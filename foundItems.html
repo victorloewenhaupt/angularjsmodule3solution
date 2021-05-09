@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+    <thead>
+      <tr>
+      	<th>No.</th>
+        <th>Name</th>
+        <th>Short Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in foundList.foundItems">
+      	<td>{{$index + 1 }}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.short_name}}</td>
+        <td>{{item.description}}</td>
+        <th>
+            <div class="form-group narrow-button">
+              <button class="btn btn-danger" ng-click="foundList.onRemove({index : $index});">Don't want this one!</button>
+            </div>
+        </th>
+      </tr>
+    </tbody>
+ </table>

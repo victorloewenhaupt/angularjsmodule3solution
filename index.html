@@ -1,27 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="NarrowItDownApp">
   <head>
     <title>Narrow Down Your Menu Choice</title>
-    <script src="jquery-3.1.0.min.js"></script>
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
   </head>
 <body>
-   <div class="container">
+   <div class="container" ng-controller="NarrowItDownController as menu">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control">
+      <input type="text" placeholder="Enter text like chicken or egg" class="form-control" ng-model="menu.searchStr">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click = "menu.search()">Narrow It Down For Me!</button>
     </div>
-
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...."></found-items>
+    <br><br><br>
+    <div ng-if=" menu.displayMenu">
+      <found-items found-items="menu.found" on-remove="menu.removeItem(index)"></found-items>
+    </div>
+    <div ng-if="menu.dataNotFound">
+        <div class="alert alert-danger">
+              <strong>Oh! Sorry</strong> Nothing found.
+        </div>
+     </div>
+
   </div>
 
 </body>
